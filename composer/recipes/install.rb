@@ -1,16 +1,36 @@
-#
-# Taken from:
-# http://docs.aws.amazon.com/opsworks/latest/userguide/gettingstarted.walkthrough.photoapp.3.html
-#
-node[:deploy].each do |application, deploy|
+
+node[:deploy].each do |app_name, deploy|
+
   script "install_composer" do
     interpreter "bash"
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
-    curl -s https://getcomposer.org/installer | php
-    php composer.phar install --no-dev --no-interaction --optimize-autoloader
+    curl -sS https://getcomposer.org/installer | php
+    php composer.phar install --no-dev
     EOH
-    only_if { ::File.exists?("#{deploy[:deploy_to]}/current/composer.json") }
   end
-end 
+
+  template "#{deploy[:deploy_to]}/current/db-connect.php" do
+    source "db-connect.php.erb"
+    mode 0660
+    group deploy[:group]
+
+    if platform?("ubuntu")
+      owner "www-data"
+    elsif platform?("amazon")   
+      owner "apache"
+    end
+
+    variables(
+      :host =>     (deploy[:database][:host] rescue nil),
+      :user =>     (deploy[:database][:username] rescue nil),
+      :password => (deploy[:database][:password] rescue nil),
+      :db =>       (deploy[:database][:database] rescue nil)
+    )
+
+   only_if do
+     File.directory?("#{deploy[:deploy_to]}/current")
+   end
+  end
+end
