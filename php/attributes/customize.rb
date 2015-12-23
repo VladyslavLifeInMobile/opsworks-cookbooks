@@ -6,5 +6,5 @@
 # put the overrides in YOUR customize.rb file.
 ###
 
-['php']['upload_max_filesize'] = '20M'
-['php']['post_max_size'] = '20M'
+['php']['upload_max_filesize'] = 20M
+['php']['post_max_size'] = 20M
