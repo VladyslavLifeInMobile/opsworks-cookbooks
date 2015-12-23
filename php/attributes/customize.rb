@@ -6,5 +6,6 @@
 # put the overrides in YOUR customize.rb file.
 ###
 
-default['php']['upload_max_filesize'] = '20M'
-default['php']['post_max_size'] = '20M'
+
+node.set['php']['directives'] = { :upload_max_filesize => '20M' }
+node.set['php']['directives'] = { :post_max_size => '20M' }
