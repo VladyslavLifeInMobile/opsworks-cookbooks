@@ -5,3 +5,7 @@
 # "php/attributes/customize.rb" in your cookbook repository and
 # put the overrides in YOUR customize.rb file.
 ###
+
+
+upload_max_filesize = 20M
+post_max_size = 20M
