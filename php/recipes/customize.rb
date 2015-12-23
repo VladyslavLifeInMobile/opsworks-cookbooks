@@ -7,5 +7,6 @@
 ###
 
 
-node.override['php']['directives'] = { :upload_max_filesize => '20M' }
-node.override['php']['directives'] = { :post_max_size => '20M' }
+
+node.default[:php][:directives] = { :post_max_size => '20M' }
+node.default[:php][:directives] = { :upload_max_filesize => '20M' }
