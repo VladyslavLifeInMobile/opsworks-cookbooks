@@ -1,2 +1,2 @@
-command '/srv/www/current/mobilegamifylive/app/console assets:install --symlink'
-command '/srv/www/current/mobilegamifylive/app/console assetic:dump'
+command '/srv/www/mobilegamifylive/current/app/console assets:install --symlink'
+command '/srv/www/mobilegamifylive/current/app/console assetic:dump'
