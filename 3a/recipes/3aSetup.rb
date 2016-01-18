@@ -1,2 +1,2 @@
-command 'app/console doctrine:schema:create'
-command 'app/console khepin:yamlfixtures:load'
+command '/srv/www/current/mobilegamifylive/app/console doctrine:schema:create'
+command '/srv/www/current/mobilegamifylive/app/console khepin:yamlfixtures:load'
