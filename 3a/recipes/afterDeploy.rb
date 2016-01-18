@@ -1,2 +1,2 @@
-app/console assets:install --symlink
-app/console assetic:dump
+php app/console assets:install --symlink
+php app/console assetic:dump
