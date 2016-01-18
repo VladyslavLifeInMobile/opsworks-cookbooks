@@ -1,2 +1,2 @@
-php app/console doctrine:schema:create
-php app/console khepin:yamlfixtures:load
+command 'app/console doctrine:schema:create'
+command 'app/console khepin:yamlfixtures:load'
