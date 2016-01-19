@@ -1,10 +1,3 @@
-yum_package 'php56' do
- action :install
- end
-
-execute 'composer_isntall' do
-    command 'composer install'
-end
 
 
 execute 'assets_install' do
