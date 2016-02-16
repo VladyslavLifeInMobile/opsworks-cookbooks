@@ -1,5 +1,5 @@
-name "php"
-description "Install php from source"
+#name "php"
+#description "Install php from source"
 override_attributes(
   "php" => {
     "install_method" => "source"
