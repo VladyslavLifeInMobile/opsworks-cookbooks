@@ -19,7 +19,7 @@
 #
 
 lib_dir = 'lib'
-default['php']['install_method'] = 'package'
+default['php']['install_method'] = 'source'
 default['php']['directives'] = {}
 default['php']['bin'] = 'php'
 
