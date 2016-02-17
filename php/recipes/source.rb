@@ -22,10 +22,10 @@ configure_options = node['php']['configure_options'].join(' ')
 
 
 
-mysql_client 'default' do
-  action :create
-  only_if { configure_options =~ /mysql/ }
-end
+#mysql_client 'default' do
+#  action :create
+#  only_if { configure_options =~ /mysql/ }
+#end
 
 node['php']['src_deps'].each do |pkg|
   package pkg do
