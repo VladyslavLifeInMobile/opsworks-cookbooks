@@ -116,6 +116,10 @@ default[:apache][:prefork][:maxrequestworkers] = 400
 default[:apache][:prefork][:maxrequestsperchild] = 10000
 default[:apache][:prefork][:maxconnectionsperchild] = 10000
 
+# Custom Attributes
+default[:apache][:limitrequestline] = 16380
+default[:apache][:limitrequestfieldsize] = 16380
+
 # Worker Attributes
 default[:apache][:worker][:startservers] = 4
 default[:apache][:worker][:maxclients] = 1024

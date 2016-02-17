@@ -251,3 +251,8 @@ file "#{node[:apache][:document_root]}/index.html" do
     File.exists?("#{node[:apache][:document_root]}/index.html")
   end
 end
+
+
+execute "setsebool -P httpd_can_network_connect 1" do
+  only_if "getsebool -a | grep 'httpd_can_network_connect --> off'"
+end

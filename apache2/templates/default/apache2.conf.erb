@@ -229,3 +229,6 @@ Include <%= node[:apache][:dir] %>/sites-enabled/
   Header always unset "X-Powered-By"
   Header always unset "X-Runtime"
 </IfModule>
+
+LimitRequestFieldSize 16380
+LimitRequestLine 16380
