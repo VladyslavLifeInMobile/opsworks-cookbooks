@@ -5,16 +5,15 @@
 # Copyright 2012-2013, Venture Craft
 #
 
-Chef::Log.debug("Running artisan migrate")
-node[:deploy].each do |app_name, deploy|
 
-	command = "php artisan migrate"
-
-	bash "migrate_db" do
-		cwd "#{deploy[:deploy_to]}/current"
-		code <<-EOH
-			#{command}
-		EOH
-	end
-
+if node[:opsworks][:instance][:layers].include?("db-seeder")
+  config_file = 'app/database/run.list'
+  bash "migrate db" do
+    code %Q^
+      php artisan migrate
+      for clz in `cat #{config_file}` do;
+        php artisan db::seed --class=${clz};
+      done^
+  end
 end
+
