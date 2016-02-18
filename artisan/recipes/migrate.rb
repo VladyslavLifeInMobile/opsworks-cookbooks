@@ -17,26 +17,23 @@ script "run_migrations" do
 	      EOH
 	    end
 
+script "change_permissions" do
+	      interpreter "bash"
+	      user "root"
+	      cwd "#{deploy[:deploy_to]}/current"
+	      code <<-EOH
+	      sudo chmod -Rf 777 storage
+	      EOH
+	    end
 
-    permissions_command = "sudo chmod -Rf 777 app/storage"
-
-    bash "change_permissions" do
-        Chef::Log.debug("Setting permissions on #{deploy[:deploy_to]}/current/app/storage")
-        cwd "#{deploy[:deploy_to]}/current"
-        code <<-EOH
-            #{permissions_command}
-        EOH
-    end
-
-    permissions_command = "sudo chmod -Rf 777 bootstrap/cache"
-
-    bash "change_permissions" do
-        Chef::Log.debug("Setting permissions on #{deploy[:deploy_to]}/current/boostrap/cache")
-        cwd "#{deploy[:deploy_to]}/current"
-        code <<-EOH
-            #{permissions_command}
-        EOH
-    end
+script "change_permissions_two" do
+	      interpreter "bash"
+	      user "root"
+	      cwd "#{deploy[:deploy_to]}/current"
+	      code <<-EOH
+	      sudo chmod -Rf 777 bootstrap/cache
+	      EOH
+	    end
 
 
 end
