@@ -6,14 +6,13 @@
 #
 
 
-if node[:opsworks][:instance][:layers].include?("db-seeder")
-  config_file = 'app/database/run.list'
-  bash "migrate db" do
-    code %Q^
-      php artisan migrate
-      for clz in `cat #{config_file}` do;
-        php artisan db::seed --class=${clz};
-      done^
-  end
-end
 
+
+script "run_migrations" do
+	      interpreter "bash"
+	      user "root"
+	      cwd "#{deploy[:deploy_to]}/current"
+	      code <<-EOH
+	      php artisan migrate
+	      EOH
+	    end
