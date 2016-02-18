@@ -6,7 +6,7 @@
 #
 
 
-
+node[:deploy].each do |app_name, deploy|
 
 script "run_migrations" do
 	      interpreter "bash"
@@ -16,3 +16,4 @@ script "run_migrations" do
 	      php artisan migrate
 	      EOH
 	    end
+end
