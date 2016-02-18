@@ -8,3 +8,7 @@ node[:deploy].each do |application, deploy|
     EOH
   end
 end
+
+execute "disable selinux - running" do
+      command "/usr/sbin/setenforce 0"
+end
