@@ -17,6 +17,15 @@ script "run_migrations" do
 	      EOH
 	    end
 
+script "run_db_seed" do
+	      interpreter "bash"
+	      user "root"
+	      cwd "#{deploy[:deploy_to]}/current"
+	      code <<-EOH
+	      php artisan db:seed
+	      EOH
+	    end
+
 script "change_permissions" do
 	      interpreter "bash"
 	      user "root"
